@@ -3,7 +3,7 @@
 This repository contains implementations of various deep learning models for medical image segmentation as part of my Final Year Project (FYP). The models explored are:
 - Probabilistic U-Net
 - Multiplanar U-Net
-- Mixture of Experts (MoE)
+- Mixture of Experts (MoE) [under development - haven't execute yet]
 
 ## 📌Project Overview
 Medical image segmentation plays a critical role in diagnostics and treatment planning. This project evaluates multiple architectures to analyze their performance in terms of accuracy, efficiency, and robustness.
