@@ -9,8 +9,8 @@ This repository contains implementations of various deep learning models for med
 Medical image segmentation plays a critical role in diagnostics and treatment planning. This project evaluates multiple architectures to analyze their performance in terms of accuracy, efficiency, and robustness.
 
 ## 📂Repository Structure
--main/
-  ├── main.py
+- main/  
+  ├── main.py 
 - notebooks/  
   ├── probabilistic_unet.ipynb  
   ├── multiplanar_unet.ipynb  
