@@ -19,15 +19,19 @@ Medical image segmentation plays a critical role in diagnostics and treatment pl
 - README.md  
 
 ## 🚀Models Implemented
-### 1. Probabilistic U-Net
+### 1. Based Model U-net
+- Baseline UNet performance report (metrics + images).
+- Act as a benchmark
+  
+### 2. Probabilistic U-Net
 - Captures uncertainty in segmentation tasks.
 - Produces multiple plausible segmentation outputs.
 
-### 2. Multiplanar U-Net
+### 3. Multiplanar U-Net
 - Incorporates multiple imaging planes.
 - Improves spatial context understanding.
 
-### 3. Mixture of Experts (MoE)
+### 4. Mixture of Experts (MoE)
 - Uses specialized experts for different aspects of segmentation.
 - A gating mechanism combines their outputs for final prediction.
 
