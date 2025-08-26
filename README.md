@@ -13,6 +13,7 @@ Medical image segmentation plays a critical role in diagnostics and treatment pl
 - main/  
   ├── main.py 
 - notebooks/  
+  ├── based_unet.ipynb  
   ├── probabilistic_unet.ipynb  
   ├── multiplanar_unet.ipynb  
   ├── mixture_of_experts.ipynb  
