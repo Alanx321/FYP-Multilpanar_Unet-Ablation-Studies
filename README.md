@@ -1,147 +1,218 @@
-#  🩺FYP - Medical Image Segmentation
+# 🩺 FYP - Multiplanar Approach for Hepatic Vessel Segmentation
 
-This repository contains implementations of various deep learning models for medical image segmentation as part of my Final Year Project (FYP). The models explored are:
-- Based Model U-net
-- Probabilistic U-Net
-- Multiplanar U-Net
-- Mixture of Experts (MoE) [under development - haven't execute yet]
+This repository contains the implementation and evaluation of a multiplanar approach for hepatic vessel segmentation as part of my Final Year Project (FYP). The project uses **nnU-Net** as the benchmark model to establish baseline performance.
 
-## 📌Project Overview
-Medical image segmentation plays a critical role in diagnostics and treatment planning. This project evaluates multiple architectures to analyze their performance in terms of accuracy, efficiency, and robustness.
+## 📌 Project Overview
+Hepatic vessel segmentation is crucial for liver surgery planning, tumor assessment, and transplant procedures. This project explores multiplanar learning approaches to improve hepatic vessel segmentation accuracy and robustness, with a focus on capturing 3D anatomical information from multiple imaging planes.
 
-## 📂Repository Structure
-- main/  
-  ├── main.py 
-- notebooks/  
-  ├── based_unet.ipynb  
-  ├── probabilistic_unet.ipynb  
-  ├── multiplanar_unet.ipynb  
-  ├── mixture_of_experts.ipynb  
-- README.md  
+## 📂 Repository Structure
+```
+FYP-Medical-Image-Segmentation/
+├── Benchmark/
+│   ├── NNunet_Training_Benchmark.ipynb
+│   ├── training_analysis.ipynb
+│   ├── checkpoint_best.pth
+│   ├── checkpoint_latest.pth
+│   ├── training_log_2025_10_20_15_44_11.txt
+│   ├── comprehensive_training_analysis.png
+│   ├── progress.png
+│   ├── smoothed_training_curves.png
+│   └── training_summary_report.png
+├── Main/
+│   └── main.py
+└── README.md
+```
 
-## 🚀Models Implemented
-### 1. Based Model U-net
-- Baseline UNet performance report (metrics + images).
-- Act as a benchmark
-  
-### 2. Probabilistic U-Net
-- Captures uncertainty in segmentation tasks.
-- Produces multiple plausible segmentation outputs.
+### 📊 Benchmark Folder
+The **Benchmark** folder contains comprehensive nnU-Net training analysis and evaluation:
+- **Training Notebooks**: nnU-Net baseline training and detailed analysis notebooks
+- **Checkpoints**: Best and latest model checkpoints for reproducibility
+- **Training Logs**: Detailed training logs with timestamps
+- **Visualizations**: 
+  - Comprehensive training analysis graphs
+  - Progress tracking visualizations
+  - Smoothed training curves
+  - Summary reports
 
-### 3. Multiplanar U-Net
-- Incorporates multiple imaging planes.
-- Improves spatial context understanding.
+## 🚀 Models & Methodology
 
-### 4. Mixture of Experts (MoE)
-- Uses specialized experts for different aspects of segmentation.
-- A gating mechanism combines their outputs for final prediction.
+### 1. nnU-Net (Benchmark)
+- **Purpose**: Establish baseline performance for hepatic vessel segmentation
+- **Implementation**: Standard nnU-Net architecture with automated preprocessing
+- **Training**: Conducted on hepatic vessel dataset
+- **Results**: Training metrics, checkpoints, and visualizations available in `Benchmark/`
 
-## ⚙️Setup Instructions
-1. Clone the repository:
+### 2. Multiplanar Approach (Proposed Method)
+- **Core Concept**: Leverage multiple imaging planes (axial, sagittal, coronal) to capture comprehensive 3D vessel structure
+- **Advantages**: 
+  - Enhanced spatial context understanding
+  - Better capture of vessel continuity across different orientations
+  - Improved segmentation of complex vascular structures
+- **Implementation**: [To be detailed during development]
+
+## 📊 Dataset
+- **Focus**: Hepatic (liver) vessel segmentation
+- **Imaging Modality**: CT scans
+- **Preprocessing**: DICOM/NIfTI to 2D slices, normalization, standardization
+- **Data Split**: Training, validation, and test sets
+
+## ⚙️ Setup Instructions
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-username/FYP-Medical-Image-Segmentation.git
-2. Install dependencies (if requirements.txt is provided):
+   cd FYP-Medical-Image-Segmentation
+   ```
+
+2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
-3. Open and run the Colab notebooks inside notebooks/.
+   ```
 
-## 📊Results and Evaluation
-- Metrics: Dice Coefficient, IoU, and Accuracy.
-- Comparative analysis between the models will be documented in the final report.
+3. **Access benchmark materials:**
+   - Navigate to `Benchmark/` for nnU-Net training notebooks
+   - Review training visualizations and analysis
+   - Load checkpoints for inference or continued training
 
-## 📌Notes
-- All experiments are conducted using Kaggle for GPU acceleration.
-- Dataset preprocessing steps are documented in each notebook.
+4. **Run experiments:**
+   - Open notebooks in Google Colab or Kaggle
+   - Ensure GPU acceleration is enabled (T4 or P100 recommended)
+   - Follow preprocessing steps documented in each notebook
 
-## 👨‍💻Author
-- Alan
-- BSc Computer Science (Artificial Intelligence)
+## 📊 Evaluation Metrics
 
-## 🎯Timeline
-### Phase 1: Setup & Dataset (Week 1–2)
-#### 📆 22 Sept – 5 Oct (2 weeks)
-- Set up Kaggle notebook environment (PyTorch + GPU).
-- Download & explore 1 dataset (start with Lung CT from Kaggle).
-- Preprocess: convert DICOM/nii to 2D slices, normalize, resize.
-- Write simple data loader in PyTorch.
-- Deliverable: Small script that loads and visualizes CT slices + masks. 
+### Primary Metrics
+- **Dice Similarity Coefficient (DSC)**: Measures overlap between prediction and ground truth
+- **Intersection over Union (IoU)**: Evaluates segmentation accuracy
+- **Hausdorff Distance (HD)**: Measures boundary accuracy
+- **Average Surface Distance (ASD)**: Evaluates surface-level precision
 
-### Phase 2: Baseline UNet (Week 3–4)
-#### 📆 6 Oct – 19 Oct (2 weeks)
-- Implement 2D UNet in PyTorch (train slice-by-slice).
-- Train on small subset (10–20 patients).
-- Evaluate with Dice/IoU.
-- Save results + visualizations.
-- Deliverable: Baseline UNet performance report (metrics + images).
+### Additional Metrics
+- **Sensitivity/Recall**: Ability to detect all vessel pixels
+- **Specificity**: Ability to avoid false positives
+- **Precision**: Accuracy of predicted vessel pixels
 
-### Phase 3: Multi-Planar UNet (Week 5–7)
-#### 📆 20 Oct – 9 Nov (3 weeks)
-- Train 3 separate UNets (axial, sagittal, coronal views).
-- Implement simple fusion strategy (average or weighted sum).
-- Compare with baseline UNet.
-- Deliverable: Performance table (Baseline vs Multi-Planar).
+### Visualization
+Comprehensive training analysis available in the `Benchmark/` folder includes:
+- Training and validation loss curves
+- Performance metrics over epochs
+- Smoothed training progression
+- Visual comparison of segmentation results
 
-### Phase 4: Probabilistic UNet (Week 8–10)
-#### 📆 10 Nov – 30 Nov (3 weeks)
-- Implement Probabilistic UNet (with latent space + uncertainty).
-- Train on same dataset.
-- Evaluate uncertainty maps (show where model is “unsure”).
-- Deliverable: Results + uncertainty visualization.
+## ✨ Contribution Statement
 
-### Phase 5: Novel Model (Your Contribution) (Week 11–14)
-#### 📆 1 Dec – 28 Dec (4 weeks)
-- 👉 Your “special” twist: MOE-UNet (Mixture of Experts)
-- Design architecture: gating network decides between experts (Multi-Planar + Probabilistic).
-- Implement & debug training loop.
-- Run training on subset of dataset.
-- Compare vs previous models.
-- Deliverable: Novel model results + comparison table.
+*[To be completed after experimental results and analysis]*
 
-### Phase 6: Experiments on 2nd Dataset (Week 15–17)
-#### 📆 29 Dec – 18 Jan (3 weeks)
-- Choose second dataset (e.g., LiTS Liver CT or Brain MRI).
-- Retrain baseline + your model.
-- Collect performance metrics across both datasets.
-- Deliverable: Cross-dataset comparison (shows robustness).
+This project aims to explore the effectiveness of multiplanar approaches for hepatic vessel segmentation, with potential contributions in:
+- Comparative analysis of nnU-Net vs multiplanar methods for vascular structures
+- Investigation of optimal fusion strategies for multi-view predictions
+- Evaluation of computational efficiency vs accuracy trade-offs
 
-### Phase 7: Report Writing (Week 18–22)
-#### 📆 19 Jan – 22 Feb (5 weeks)
-##### Structure of thesis/report:
-- Introduction (motivation, objectives).
-- Background (UNet, Multi-Planar, Probabilistic, MOE).
-- Methodology (datasets, preprocessing, models).
-- Results (metrics, visualizations).
-- Discussion (pros, cons, novelty).
-- Conclusion + Future Work.
-- Start writing while running experiments.
-- Keep updating with results & figures.
-- Deliverable: First draft of report ready by end of Feb.
+## 🎯 Timeline
 
-### Phase 8: Final Refinement (Week 23–27)
-#### 📆 23 Feb – 1 Apr (5 weeks)
-- Polish results + finalize all figures/graphs.
-- Proofread & finalize thesis.
-- Prepare presentation slides.
-- Make demo notebook (show segmentation on 1–2 scans).
-- Practice viva presentation.
-##### Final Deliverables:
-- Thesis report (PDF).
-- Presentation slides.
-- GitHub repo (code + trained weights).
-- Demo (Kaggle notebook or Colab).
+### Phase 1: Literature Review & Setup (Week 1–3)
+**📆 Sept – Oct 2025**
+- ✅ Literature review on hepatic vessel segmentation methods
+- ✅ Review nnU-Net architecture and multiplanar approaches
+- ✅ Set up Kaggle/Colab environment (PyTorch + GPU)
+- ✅ Acquire and explore hepatic vessel dataset
+- **Deliverable**: ✅ Environment setup and dataset understanding
 
-## ✨ Contribution Statement (What makes this project unique)
-This project makes the following contributions to medical image segmentation research:
-- Efficient 3D-aware segmentation on limited hardware
-- Demonstrates how multi-planar learning can capture 3D anatomical correlations from 2D slices, enabling effective training on resource-constrained GPUs (Kaggle T4/P100) instead of requiring heavy 3D CNNs.
-- Integration of uncertainty estimation in segmentation
-- Incorporates Probabilistic UNet to quantify predictive uncertainty, producing both segmentation masks and confidence maps, which are clinically valuable for identifying ambiguous regions in CT/MRI scans.
-- Novel Mixture-of-Experts (MOE) fusion strategy
-- Proposes a hybrid approach where a gating network adaptively combines outputs from multi-planar and probabilistic experts, allowing the model to leverage both anatomical context and uncertainty-awareness.
-- Cross-dataset validation for robustness
-- Evaluates the proposed framework on multiple public medical datasets (lungs CT, liver CT, and/or brain MRI), demonstrating generalizability beyond a single organ or modality.
+### Phase 2: Benchmark - nnU-Net Implementation (Week 4–6)
+**📆 Oct 2025**
+- ✅ Implement nnU-Net for hepatic vessel segmentation
+- ✅ Train nnU-Net on hepatic vessel dataset
+- ✅ Evaluate performance with standard metrics (Dice, IoU, HD)
+- ✅ Generate comprehensive training analysis and visualizations
+- **Deliverable**: ✅ Baseline nnU-Net performance report (available in `Benchmark/`)
 
-## 📜License
-This project is for academic purposes.
+### Phase 3: Multiplanar Architecture Design (Week 7–9)
+**📆 Nov 2025** - *Current Phase*
+- Design multiplanar architecture for hepatic vessels
+- Plan fusion strategy for multi-view predictions
+- Implement data preprocessing for multiple planes
+- Create training pipeline for multiplanar model
+- **Deliverable**: Multiplanar architecture design document
+
+### Phase 4: Multiplanar Model Implementation (Week 10–13)
+**📆 Nov – Dec 2025**
+- Implement multiplanar segmentation model
+- Train separate models for axial, sagittal, and coronal views
+- Develop fusion mechanism (weighted average, learned fusion, or attention-based)
+- Debug and optimize training process
+- **Deliverable**: Trained multiplanar model with initial results
+
+### Phase 5: Comparative Evaluation (Week 14–16)
+**📆 Dec 2025 – Jan 2026**
+- Run comprehensive evaluation on test set
+- Compare nnU-Net vs multiplanar approach
+- Analyze failure cases and edge scenarios
+- Generate qualitative visualizations (3D renderings, slice-by-slice comparisons)
+- Statistical significance testing
+- **Deliverable**: Comparative analysis report with metrics and visualizations
+
+### Phase 6: Optimization & Ablation Studies (Week 17–19)
+**📆 Jan 2026**
+- Hyperparameter tuning for multiplanar model
+- Ablation studies (impact of each plane, fusion strategies)
+- Investigate different fusion mechanisms
+- Optimize inference speed and memory usage
+- **Deliverable**: Optimized model and ablation study results
+
+### Phase 7: Report Writing (Week 20–24)
+**📆 Jan – Feb 2026**
+
+**Report Structure:**
+- **Introduction**: Motivation, clinical significance, research objectives
+- **Literature Review**: Hepatic vessel segmentation, nnU-Net, multiplanar methods
+- **Methodology**: 
+  - Dataset description and preprocessing
+  - nnU-Net baseline implementation
+  - Multiplanar architecture design
+  - Training procedures and hyperparameters
+- **Results**: 
+  - Quantitative metrics comparison
+  - Qualitative visual analysis
+  - Ablation study results
+  - Statistical analysis
+- **Discussion**: 
+  - Interpretation of results
+  - Advantages and limitations
+  - Clinical implications
+- **Conclusion & Future Work**
+
+**Deliverable**: First draft of thesis/report
+
+### Phase 8: Final Refinement & Presentation (Week 25–28)
+**📆 Feb – Mar 2026**
+- Polish results and finalize all figures/graphs
+- Proofread and finalize thesis
+- Prepare presentation slides
+- Create demo notebook showcasing segmentation results
+- Practice viva presentation
+- Prepare poster (if required)
+
+**Final Deliverables:**
+- ✅ Thesis report (PDF)
+- ✅ Presentation slides
+- ✅ GitHub repository with code + trained weights
+- ✅ Demo notebook (Colab/Kaggle)
+
+## 📝 Notes
+- All experiments are conducted using **Kaggle** for GPU acceleration
+- Dataset preprocessing steps are documented in each notebook
+- Training checkpoints and logs are stored in the `Benchmark/` folder
+- Comprehensive visualizations track training progress and model performance
+
+## 👨‍💻 Author
+**Alan**  
+BSc Computer Science (Artificial Intelligence)
+
+## 📜 License
+This project is for academic purposes.  
 Feel free to use the code with proper citation.
 
+---
+
+*Last Updated: October 2025*  
+*Current Status: Phase 3 - Multiplanar Architecture Design*
