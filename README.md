@@ -20,6 +20,9 @@ FYP-Medical-Image-Segmentation/
 │   └── training_summary_report.png
 ├── Main/
 │   └── main.py
+├── FinalDeliverables/
+│   ├── YapYuKang_20509407_Final_Report.pdf
+│   └── YapYuKang_20509407_Software.ipynb
 └── README.md
 ```
 
@@ -33,6 +36,16 @@ The **Benchmark** folder contains comprehensive nnU-Net training analysis and ev
   - Progress tracking visualizations
   - Smoothed training curves
   - Summary reports
+
+### 🧪 Software Notebook
+`FinalDeliverables/YapYuKang_20509407_Software.ipynb` is the full multiplanar pipeline, run end-to-end on Colab with Google Drive persistence:
+- **Training**: axial, sagittal, and coronal 3D full-resolution nnU-Net models (fold 0)
+- **clDice enhancement**: custom trainer adding a topology-aware loss (Dice + CE + clDice) to improve vessel connectivity
+- **Fusion strategies**: majority voting, soft probability averaging, and a learned fusion CNN
+- **Combined-model experiment**: single model trained on all three orientations pooled together
+- **Evaluation**: Dice, clDice, HD95, sensitivity, specificity, precision — with Wilcoxon signed-rank significance testing
+- **Post-processing**: connected-component filtering to remove false-positive fragments
+- **Figure generation**: reproduces all dissertation figures from verified per-case CSV results
 
 ## 🚀 Models & Methodology
 
